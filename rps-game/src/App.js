@@ -71,7 +71,7 @@ class App extends Component {
       </div>
     );
   }
-  render(){
+  render() {
     return(
       <div className="App">
         <Rps com={this.state.com} result={this.state.result}

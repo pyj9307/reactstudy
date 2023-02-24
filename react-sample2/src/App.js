@@ -5,6 +5,7 @@ import Header from './Header';
 import Section from './Section';
 import Article from './Article';
 import Footer from './Footer';
+import DescInput from './DescInput';
 
 class App extends Component {
   // 연습문제2
@@ -25,17 +26,12 @@ class App extends Component {
     }
   }
 
-  findDescById(id) {
-    let desc;
-    for (let i = 0; i < this.state.desc.length; i++) {
-      if (id === this.state.id) {
-        desc = this.state.desc[i];
-        break;
-      }
-    }
-    return desc;
-  }
   render() {
+    let article;
+    article = <DescInput onSubmit={function (desc) {
+      this.state.desc.push(desc);
+      this.setState({ desc: this.state.desc })
+    }.bind(this)} />
     // Header와 Footer 컴포넌트에 state 값으로 생성한
     // title과 desc를 각각 props에 담아서 전달시킨다.
     return (
@@ -59,6 +55,7 @@ class App extends Component {
             e.target.style.backgroundColor = e.target.style.backgroundColor === 'beige' ? 'white' : 'beige';
             e.target.style.textDecoration = e.target.style.textDecoration === 'underline' ? 'none' : 'underline';
           }}/>
+          {article}
       </div>
     );
   }

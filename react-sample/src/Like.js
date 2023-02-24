@@ -11,6 +11,7 @@ class Like extends Component {
             <div>
                 {/* 이미지 파일 경로 설정시 public폴더에 저장하도록 한다
                     class를 지정할 때 : className이라는 속성명을 사용하도록 한다. */}
+                    {/* style={display:"none"}해도 되지만 스크립트가 길어지므로 임의의(defauntStyle)함수를 만들어서 불러온다 */}
                 <img className='like' id='like' src='./like.png' alt='like' style={defauntStyle}
                     onClick={function () {
                         this.props.onLike('like');

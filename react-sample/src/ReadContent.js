@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Content extends Component {
+class ReadContent extends Component {
     // pure.html에 있는 article태그를 컴포넌트화
     render() {
       return (
@@ -16,4 +16,4 @@ class Content extends Component {
     }
   }
   
-  export default Content;  
+  export default ReadContent;  
