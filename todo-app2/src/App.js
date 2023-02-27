@@ -1,8 +1,8 @@
 import './App.css';
-import TodoTemplate from './components/TodoTemplate.js';
-import TodoInsert from './components/TodoInsert.js';
-import TodoList from './components/TodoList.js';
-import {useState, useRef, useCallback, inputText} from 'react';
+import TodoTemplate from './components/TodoTemplate';
+import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
+import {useState, useRef, useCallback} from 'react';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -12,23 +12,23 @@ function App() {
   ]);
 
   const nextId = useRef(todos.length+1);
-  // 고유한 값을 저장할 때 사용
+  //고유한 값을 저장할때 사용
   const onInsert = useCallback(
     (inputText) => {
-      const todo = {id: nextId.current, text: inputText, checked: false}
-      // todos.push() 사용 불가.
-      setTodos(todo.concat(todo));
+      const todo = {id: nextId.current , text: inputText, checked: false}
+      // todos.push() 사용 불가
+      setTodos(todos.concat(todo));
       // 왼쪽항과 오른쪽항을 더해서 왼쪽항에 저장한다.
       // nextId.current = nextId.current+1;
       nextId.current += 1;
-    }, [todos] // useCallback 함수안에서 사용하는 state또는 props가 있다면 배열로 반드시 지정해야 최신 상태값을 보장할 수 있다.
+    }, [todos] //useCallback 함수안에서 사용하는 state또는 props가 있다면
+    // 배열로 반드시 지정해야 최신 상태값을 보장 할수있다.
   );
   return (
     <TodoTemplate>
-      {/* Todo App을 만들자. */}
       <TodoInsert onInsert={onInsert}/>
       <TodoList todos={todos}/>
-      </TodoTemplate>
+    </TodoTemplate>
   );
 }
 
