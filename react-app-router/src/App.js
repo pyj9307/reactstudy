@@ -92,11 +92,14 @@ function Login() {
       <input type='text' placeholder='아이디' onChange={(e) => {
         setUser({ id: e.target.value, pw: user.pw })
       }} />
+      <br/>
       <input type='password' placeholder='비밀번호' onChange={(e) => {
         setUser({ id: user.id, pw: e.target.value })
       }} />
-      <br />
-      <NavLink to={`/login/result/${user.id}/${user.pw}`}>로그인</NavLink>
+      <br/>
+      <NavLink to={`/login/result/${user.id}/${user.pw}`}>로그인</NavLink> {/* 문자열 템플릿 사용, JS의 문자열 템플릿 : (역따옴표)`${변수명}` 문자열 내부에서 변수명을 그대로 사용가능 */}
+      <br/>
+      <NavLink to={'/login/result/'+user.id+'/' + user.pw}>로그인2</NavLink> {/* 문자열 템플릿 미사용 */}
       <Outlet />
     </div>
   )
