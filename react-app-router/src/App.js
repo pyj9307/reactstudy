@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useParams } from 'react-router-dom'
+import{useState} from 'react';
 
 function Home() {
   return (
@@ -83,43 +84,39 @@ function Contact() {
 
 function Login(){
   // localhost:3000/login/result/아이디값/비밀번호값
-  return(
+  const[user, setUser] = useState({id:'',pw:''});
+   return(
     <div>
       <h1>로그인 페이지</h1>
-      <form action='/create_process' method='post'
-                onSubmit={function(e){
-                    e.preventDefault();
-                    // form 태그 내부의 태그에 name을 할당해주면 e.target.네임값.value로 해당 태그의 value값을 읽어올 수 있다.
-                    const id = e.target.id.value;
-                    // console.log('title : '+title);
-                    const password = e.target.password.value;
-                    this.props.onSubmit(id,password);
-                }}>
-      <input type='text' name='id' placeholder='아이디'/>
-      <input type='password' name='password' placeholder='비밀번호'/>
-      <button type='submit'>submit</button>
+      
+      <input type='text' placeholder='아이디' onChange={(e)=>{
+        setUser({id: e.target.value, pw: user.pw})
+      }}/>
+      <input type='password' placeholder='비밀번호' onChange={(e)=>{
+        setUser({id: user.id, pw: e.target.value})
+      }}/>
       <br/>
-      <NavLink>로그인</NavLink>
-      </form>
+      <NavLink to={`/login/result/${user.id}/${user.pw}`}>로그인</NavLink>
+      <Outlet/>
     </div>
   )
 }
 
+
 function LoginResult(){
-  let loginresult;
-  loginresult =<Login onSubmit={function (id,password){
-    loginresult.push({
-      id: id,
-      password: password
-    })
-  }} />
+  const{id, pw} = useParams();
+  console.log(`id: ${id}, pw: ${pw}`); // 문자열 템플릿 사용
+  console.log("id: "+id + ",pw : "+pw); // 문자열 템플릿 미사용
+  // 역따옴표(``) : 키보드에서 1 왼쪽에 있는 따옴표
+  // JS의 문자열 템플릿 : `${변수명}` 문자열 내부에서 변수명을 그대로 사용가능
   return(
     <div>
-      <p>아이디 : ${LoginResult.id}</p>
-      <p>비밀번호 : ${LoginResult.password}</p>
+      <p>아이디 : {id}</p>
+      <p>비밀번호 : {pw}</p>
     </div>
   )
 }
+
 
 function App() {
   return (
@@ -173,8 +170,10 @@ function App() {
               2. 아이디, 비밀번호 입력창 그리고 로그인 버튼 생성
               3. 아이디 비밀번호 입력 후 로그인 버튼 클릭하면 /login/result 로 주소 요청
               4. 아이디, 비밀번호가 출력되도록 loginResut페이지 작성
-              path에서 경로파라미터가 여러개일때 -> id/:pw와 같이 /로 구분하도록 한다. */}
-              <Route path='/login' element={<Login/>}/>
+              path에서 경로파라미터가 여러개일때 -> /id/pw와 같이 /로 구분하도록 한다. */}
+              <Route path='/login' element={<Login/>}>
+              <Route path='result/:id/:pw' element={<LoginResult/>}/>
+              </Route>
         </Routes>
       </div>
     </BrowserRouter>
