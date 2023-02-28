@@ -32,7 +32,7 @@ class ClassComp extends Component {
   }
 
   componentWillUnmount() {
-    console.log('unmount : componentWillUnmount'); // 라이프사이클 - 언마운트(코드 언마운트 발동)
+    console.log('클래스형 unmount : componentWillUnmount'); // 라이프사이클 - 언마운트(코드 언마운트 발동)
   }
 
   render() {

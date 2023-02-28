@@ -6,9 +6,9 @@ const TodoInsert = (props)=>{
     const [value, setValue] = useState('');
 
     const onChange = useCallback((e)=>{
-        // 컴포넌트가 랜더링 될 때마다 생성하지 않고 재사용
-        setValue(e.targe.value);
-    })
+        //컴포넌트가 렌더링 될 때마다 생성하지 않고 재사용
+        setValue(e.target.value);
+    });
 
     const onSubmit = useCallback((e)=>{
         props.onInsert(value);
@@ -17,13 +17,13 @@ const TodoInsert = (props)=>{
     },[value]);
 
     return(
-        <from className='TodoInsert' onSubmit={onSubmit}>
-            <input placeholder='할일을 입력하세요.' value={value} 
+        <form className='TodoInsert' onSubmit={onSubmit}>
+            <input placeholder='할일을 입력하세요.' value={value}
                 onChange={onChange}/>
             <button type='submit'>
-                <MdAdd/>
+                <MdAdd />
             </button>
-        </from>
+        </form>
     );
 }
 
