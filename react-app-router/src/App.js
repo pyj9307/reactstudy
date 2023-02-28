@@ -86,31 +86,37 @@ function Login(){
   return(
     <div>
       <h1>로그인 페이지</h1>
-      <input type='text' placeholder='아이디'/>
-      <input type='password' placeholder='비밀번호'/>
+      <form action='/create_process' method='post'
+                onSubmit={function(e){
+                    e.preventDefault();
+                    // form 태그 내부의 태그에 name을 할당해주면 e.target.네임값.value로 해당 태그의 value값을 읽어올 수 있다.
+                    const id = e.target.id.value;
+                    // console.log('title : '+title);
+                    const password = e.target.password.value;
+                    this.props.onSubmit(id,password);
+                }}>
+      <input type='text' name='id' placeholder='아이디'/>
+      <input type='password' name='password' placeholder='비밀번호'/>
+      <button type='submit'>submit</button>
       <br/>
       <NavLink>로그인</NavLink>
+      </form>
     </div>
   )
 }
 
-const user=[
-  {id:'HTML', password:'HTML is Hyper Text Markup Language.'},
-  {id:'JS', password:'JS is ....'},
-  {id:'React', password:'React is....'}
-];
-
 function LoginResult(){
-  const list=[];
-  for(let i=0; i<user.length; i++){
-    list.push(
-      <li key={user[i].idNum}><NavLink to={`/topics/${user[i].id}`}>{user[i].title}</NavLink></li>
-    )
-  }
+  let loginresult;
+  loginresult =<Login onSubmit={function (id,password){
+    loginresult.push({
+      id: id,
+      password: password
+    })
+  }} />
   return(
     <div>
-      <p>아이디 : </p>
-      <p>비밀번호 : </p>
+      <p>아이디 : ${LoginResult.id}</p>
+      <p>비밀번호 : ${LoginResult.password}</p>
     </div>
   )
 }
