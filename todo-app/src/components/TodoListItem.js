@@ -9,18 +9,19 @@ const TodoListItem = (props) => {
     const { id, text, checked } = props.todo;
     return (
         <div className='TodoListItem'>
-            <div className={checked ? 'checkbox checked' : 'checkbox'}>
+            <div className={checked ? 'checkbox checked' : 'checkbox'} onClick={()=>props.onToggle(id)}>
                 {/* <MdCheckBoxOutlineBlank/> */}
-                {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-                <div className='test'>{text}</div>
+                {checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
+                <div className='text'>{text}</div>
             </div>
             <div className='remove' onClick={()=>{
                 props.onRemove(id);     
             }}>
-                <MdRemoveCircleOutline />
-            </div>
+            <MdRemoveCircleOutline />
         </div>
+    </div>
     )
 }
 
-export default TodoListItem;
+// export default TodoListItem; -> 단순히 TodoListItem컴포넌트만 익스포트
+export default React.memo(TodoListItem); // 이전 props와 현재 props를 비교해서 변경사항이 있을때만 리랜더링
