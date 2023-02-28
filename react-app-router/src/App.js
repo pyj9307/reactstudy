@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useParams } from 'react-router-dom'
-import{useState} from 'react';
+import { useState } from 'react';
 
 function Home() {
   return (
@@ -12,15 +12,15 @@ function Home() {
 }
 
 // Topics의 항목을 반복문을 활용하여 생성하기 위한 데이터 준비
-const contents=[
-  {id:1, title:'HTML', desc:'HTML is Hyper Text Markup Language.'},
-  {id:2, title:'JS', desc:'JS is ....'},
-  {id:3, title:'React', desc:'React is....'}
+const contents = [
+  { id: 1, title: 'HTML', desc: 'HTML is Hyper Text Markup Language.' },
+  { id: 2, title: 'JS', desc: 'JS is ....' },
+  { id: 3, title: 'React', desc: 'React is....' }
 ];
 
 function Topics() {
-  const list=[];
-  for(let i=0; i<contents.length; i++){
+  const list = [];
+  for (let i = 0; i < contents.length; i++) {
     list.push(
       <li key={contents[i].id}><NavLink to={`/topics/${contents[i].id}`}>{contents[i].title}</NavLink></li>
     )
@@ -49,16 +49,16 @@ function Topics() {
 function Topic() {
   // useParams() : 해당 컴포넌트로 요청이 들어올때 url의 파라미터 데이터를 가져올 수 있다.
   // ex) 요청주소가 /topics/1 이면 1이 파라미터가 된다. 즉, 1아리는 데이터를 가져올 수 있다.
-  const {id} = useParams();
+  const { id } = useParams();
   // Contents변수를 활용한 상세페이지로 수정
   let selected_topic = {
-    title : '죄송합니다.',
-    desc : '원하는 페이지가 없습니다.(404)'
+    title: '죄송합니다.',
+    desc: '원하는 페이지가 없습니다.(404)'
   }
 
   // 향상된 for문 : for(순회할 변수명 of 타겟 배열){변수명 그대로 배열을 순회한다.}
-  for(const topic of contents){
-    if(topic.id === Number(id)){
+  for (const topic of contents) {
+    if (topic.id === Number(id)) {
       // selected_topic의 title과 desc값을 id값이 일치하는 항목의 title과 desc값으로 대체한다.
       selected_topic = topic;
       break;
@@ -82,34 +82,34 @@ function Contact() {
   );
 }
 
-function Login(){
+function Login() {
   // localhost:3000/login/result/아이디값/비밀번호값
-  const[user, setUser] = useState({id:'',pw:''});
-   return(
+  const [user, setUser] = useState({ id: '', pw: '' });
+  return (
     <div>
       <h1>로그인 페이지</h1>
-      
-      <input type='text' placeholder='아이디' onChange={(e)=>{
-        setUser({id: e.target.value, pw: user.pw})
-      }}/>
-      <input type='password' placeholder='비밀번호' onChange={(e)=>{
-        setUser({id: user.id, pw: e.target.value})
-      }}/>
-      <br/>
+
+      <input type='text' placeholder='아이디' onChange={(e) => {
+        setUser({ id: e.target.value, pw: user.pw })
+      }} />
+      <input type='password' placeholder='비밀번호' onChange={(e) => {
+        setUser({ id: user.id, pw: e.target.value })
+      }} />
+      <br />
       <NavLink to={`/login/result/${user.id}/${user.pw}`}>로그인</NavLink>
-      <Outlet/>
+      <Outlet />
     </div>
   )
 }
 
 
-function LoginResult(){
-  const{id, pw} = useParams();
+function LoginResult() {
+  const { id, pw } = useParams();
   console.log(`id: ${id}, pw: ${pw}`); // 문자열 템플릿 사용
-  console.log("id: "+id + ",pw : "+pw); // 문자열 템플릿 미사용
+  console.log("id: " + id + ",pw : " + pw); // 문자열 템플릿 미사용
   // 역따옴표(``) : 키보드에서 1 왼쪽에 있는 따옴표
   // JS의 문자열 템플릿 : `${변수명}` 문자열 내부에서 변수명을 그대로 사용가능
-  return(
+  return (
     <div>
       <p>아이디 : {id}</p>
       <p>비밀번호 : {pw}</p>
@@ -156,10 +156,10 @@ function App() {
 
         <Routes>
           {/* path에 명시된 주소로 요청을 보내면 element속성에 명시된 컴포넌트가 출력된다 */}
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home />} />
           {/* 하위주소를 입력받을 때  */}
-          <Route path='/topics' element={<Topics/>}>
-            <Route path=':id' element={<Topic/>}></Route>
+          <Route path='/topics' element={<Topics />}>
+            <Route path=':id' element={<Topic />} />
             {/* <Route path='1' element={<Topic/>}></Route>
             <Route path='2' element={<Topic/>}></Route>
             <Route path='3' element={<Topic/>}></Route> */}
@@ -170,10 +170,10 @@ function App() {
               2. 아이디, 비밀번호 입력창 그리고 로그인 버튼 생성
               3. 아이디 비밀번호 입력 후 로그인 버튼 클릭하면 /login/result 로 주소 요청
               4. 아이디, 비밀번호가 출력되도록 loginResut페이지 작성
-              path에서 경로파라미터가 여러개일때 -> /id/pw와 같이 /로 구분하도록 한다. */}
-              <Route path='/login' element={<Login/>}>
-              <Route path='result/:id/:pw' element={<LoginResult/>}/>
-              </Route>
+              path에서 경로파라미터가 여러개일때 -> /:id/:pw와 같이 /로 구분하도록 한다. */}
+          <Route path='/login' element={<Login />}>
+            <Route path='result/:id/:pw' element={<LoginResult />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
