@@ -26,7 +26,7 @@ const sampleArticle = {
 const NewsList = ({category}) => {
     const [articles, setArticles] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    // useEffect : 컴포넌트가 랜더링 될 때마다(mount, update, unmount) 특정 실행항 수 있는 Hook, 함수형 컴포넌트의 생명주기 메서드
     useEffect(()=>{
         const fetchData = async ()=>{
             setLoading(true);
@@ -45,7 +45,9 @@ const NewsList = ({category}) => {
             setLoading(false);
         };
         fetchData();
-    },[category]);//category props 값이 변경시에 동작 되도록
+    },[category]);// category props 값이 변경시에 동작 되도록(컴포넌트가 화면에 가장 처음 렌더링 될 때 or unmount 될 때 한 번만 실행하고 싶을 때는 deps 위치에 빈 배열을 넣는다.
+                  // (만약 배열을 생략한다면 리렌더링 될 때 마다 실행된다.))
+                  // 특정값이 업데이트 될 때 실행하고 싶을 때는 deps 위치의 배열 안에 검사하고 싶은 값(배열)을 넣어준다.
 
     if(loading){ //로딩시에 보여줄 문자열
         return <NewsListBlock>대기 중...</NewsListBlock>
