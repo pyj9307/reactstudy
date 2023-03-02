@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax</title>
+    <!-- ajas를 활용하기 위한 axios CDN선언
+    https://jsonplaceholder.typicode.com/ - AJAX 연습용 사이트 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -34,6 +37,9 @@
         "데이터이름3" : [값3] <br>
         }
     </p>
+    <p id='json'></p>
+    <p id='js'></p>
+    <p id='axios_get'></p>
     <script>
         // json 데이터 실습
         // 데이터 항목
@@ -41,10 +47,53 @@
         // dog라는 변수를 생성해서 위의 데이터 항목을 JS의 객체 형식으로 저장.
         // 저장후에 console.log()를 이용하여 dog변수를 출력하도록 합시다.
         // JS의 객체 형태
-        let dog = {
-            name: '식빵', family: '웰시코기', age: 1, weight: 2.14}
-        console.log(dog);
+        // let dog = {
+        //     name: '식빵', family: '웰시코기', age: 1, weight: 2.14
+        // }
+        // console.log(dog);
 
+        // dog변수에 저장된 데이터들을
+        // JSON포맷으로 변환하여 jsondog라는 변수에 저장 후 console.log로 출력
+        const jsonDog = { "name": "식빵", "family": '웰시코기', "age": 1, "weight": 2.14 }
+
+        // 함수를 이용해서 데이터 타입 변환 : JS객체 -> JSON으로 변환
+        const json = JSON.stringify(jsonDog);
+        console.log(json);
+        // 함수를 이용해서 id값을 찾아 내부에 json데이터를 출력
+        document.getElementById('json').innerText = json;
+
+        // 함수를 이용해서 데이터 타입 변환 : JSON -> JS객체로 변환
+        const jsDog = JSON.parse(json);
+        console.log(jsDog);
+        // 함수를 이용해서 id값을 찾아 내부에 객체데이터를 출력
+        document.getElementById('js').innerText = jsDog;
+
+        // ajax를 활용한 네트워크 통신 예시
+        // ajax의 get메소드 요청
+        // axios의 get함수 이용
+        // const ajax_get + axios.get('url입력');
+        const ajax_get = axios.get('https://jsonplaceholder.typicode.com/posts');
+        // ajax_get변수에 then함수를 통해 ajax결과를 확인 가능하고,
+        // 결과에 대해 소스코드 작성을 할 수 있다.
+        ajax_get.then(function(result){
+            console.log(result);
+            console.log(result.data);
+        });
+
+        // ajax의 post메소드 요청
+        // axios의 post메소드 이용
+        // const ajax_post = axios.post('url', post요청시 필요한 데이터);
+        const ajax_post = axios.post('https://jsonplaceholder.typicode.com/posts',
+        JSON.stringify({
+            title:'foo',
+            body:'bar',
+            userId:1
+        }));
+
+        ajax_post.then(function(result){
+            console.log(result);
+            document.getElementById('axios_get').innerText = JSON.stringify(result.data);
+        })
     </script>
 </body>
 
