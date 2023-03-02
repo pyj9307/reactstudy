@@ -34,8 +34,9 @@ const NewsItem = ({article}) => {
             </div>
             <div className='contents'>
                 <h2>
-                    <a href={url} target='_blank' rel="noreferrer"></a>
+                    <a href={url} target='_blank' rel="noreferrer">
                     {title}
+                    </a>
                 </h2>
                 <p>{description}</p>
             </div>
