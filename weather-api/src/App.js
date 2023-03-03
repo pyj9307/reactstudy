@@ -1,11 +1,11 @@
-import NewsPage from './components/NewsPage';
+import WeatherPage from './components/WeatherPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='*' element={<NewsPage/>}/>
+      <Route path='*' element={<WeatherPage/>}/>
       </Routes>
       </BrowserRouter>
   );

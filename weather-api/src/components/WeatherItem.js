@@ -1,34 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NewsItemBlock = styled.div`
+const WeatherItemBlock = styled.div`
 display: flex;
-.thumbnail {
-margin-right: 1rem;
-img {
-display: block; width: 160px;
-height: 100px; object-fit: cover;
-}
-}
 .contents {
-h2 {
-margin: 0;
-a { color: black; }
 }
-p {
-margin: 0; line-height: 1.5;
-margin-top: 0.5rem; white-space: normal;
-}
-}
-& + & { margin-top: 3rem; }
+// <WeatherItemBlock> 두개 사이에 있을 경우
+& + & { margin-top: 1.5rem; }
 `;
 
-const NewsItem = ({article}) => {
+const WeatherItem = ({article}) => {
     const {stnNm, tm, avgTa, minTa, minTaHrmt, maxTa, maxTaHrmt, sumRn, sumRnDur } = article;
     return(
-        <NewsItemBlock>
+        <WeatherItemBlock>
             <div className='contents'>
-            <table border="1" bordercolor="" width ="800">
+            <table border="1" width ="800">
             <tr align='center' bgcolor='white'>
             <td rowspan="2" align = "center">{stnNm}</td>
             <td>날짜</td>
@@ -52,8 +38,8 @@ const NewsItem = ({article}) => {
             </tr>
             </table>
             </div>
-        </NewsItemBlock>
+        </WeatherItemBlock>
     )
 }
 
-export default NewsItem;
+export default WeatherItem;
