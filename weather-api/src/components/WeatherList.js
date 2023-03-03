@@ -57,7 +57,7 @@ const WeatherList = ({category}) => {
             {/* 배열.map() 함수의 특성을 이용해서 
                 articles배열에 컴포넌트가 담겨지도록 재구성한다. */}
             {articles.map( article => {
-                return <WeatherItem key={article.url} article={article} />;
+                return <WeatherItem key={article.tm} article={article} />;
             })}
         </WeatherListBlock>
     )
