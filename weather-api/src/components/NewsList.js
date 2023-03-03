@@ -16,13 +16,6 @@ const NewsListBlock = styled.div`
     }
 `;
 
-// const sampleArticle = {
-//     title : '제목',
-//     description : '내용',
-//     url : 'https://www.naver.com',
-//     urlToImage : 'https://via.placeholder.com/160'
-// }
-
 const NewsList = ({category}) => {
     const [articles, setArticles] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -32,14 +25,15 @@ const NewsList = ({category}) => {
             setLoading(true);
             try {
                 // 카테고리가 all 외에 다른 문자열이 들어오면 파라미터에 추가한다.
-                const query = category === 'all' ? '' : `&category=${category}`;
+                const region = category === 'all' ? '' : `&stnIds=${category}`;
+                // const day = category === 'all' ? '' : `&startDt=${category}`;
                 const response = await axios.get(
-                    'https://newsapi.org/v2/top-headlines?country=kr&apiKey=949828c4a379430a9ed744ea75aa79a7'
-                    +query
+                    'https://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList?serviceKey=rt9Q3uLMpEJuMNtOhL6RI9js15hbxmYvbsxvHjpS%2BGWI4S%2B49iv7D88AIxAjrK7DwjsNgVpLCdQpkaMx54Xyhw%3D%3D&pageNo=1&numOfRows=30&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=20230201&endDt=20230302'
+                    +region
                     );
-                console.log(response.data.articles);
                 console.log(response);
-                setArticles(response.data.articles);
+                console.log(response.data.response.body.items.item);
+                setArticles(response.data.response.body.items.item);
             } catch (e) {
                 console.log(e);
             }
@@ -60,11 +54,6 @@ const NewsList = ({category}) => {
 
     return(
         <NewsListBlock>
-            {/* 샘플 데이터 확인용 */}
-            {/* <NewsItem article={sampleArticle}/>
-            <NewsItem article={sampleArticle}/>
-            <NewsItem article={sampleArticle}/> */}
-
             {/* 배열.map() 함수의 특성을 이용해서 
                 articles배열에 컴포넌트가 담겨지도록 재구성한다. */}
             {articles.map( article => {
