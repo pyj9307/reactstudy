@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-
-
 const CategoriesBlock = styled.div`
     display: flex;
     padding: 1rem;
@@ -14,7 +12,10 @@ const CategoriesBlock = styled.div`
         overflow-x: auto;
     }
     select{
-        width:100px; height:30px; margin-right: 30px; font-size:17px;
+        width:100px; height:30px; margin-right: 30px; font-size:17px; border: 0px;
+    }
+    input{
+        width:100px; height:25px; margin-right: 30px; font-size:13px; border: 0px;
     }
 `;
 
@@ -50,12 +51,11 @@ const Categories = () => {
     };
 
     const categories = [
-        { name: `${selectValue}`, text: '지역' }
+        { name: `${selectValue}`, text: '선택' }
     ];
 
     return (
         <CategoriesBlock>
-
             <div>
                 <select value={selectValue} onChange={(e) => onChangeRegion(e)}>
                     <option value="105">	강릉	</option>
@@ -153,8 +153,13 @@ const Categories = () => {
                     <option value="177">	홍성	</option>
                     <option value="212">	홍천	</option>
                     <option value="169">	흑산도	</option>
-
                 </select>
+                <input type="date"
+                    id="date"
+                    max="2023-06-20"
+                    min="2008-06-05"
+                    value="2023-02-15">
+                </input>
             </div>
             {categories.map(c => (
                 <Category key={c.name}
