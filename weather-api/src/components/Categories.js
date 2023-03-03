@@ -43,22 +43,14 @@ const Category = styled(NavLink)`
 
 const Categories = () => {
 
-    const [selectValue, setSelectValue] = useState('90');
+    const [selectValue, setSelectValue] = useState('159');
     const onChangeRegion = (e) => {
         setSelectValue(e.target.value);
         console.log(e.target.value);
     };
 
     const categories = [
-        { name: {selectValue}, text: '지역' }
-        // { name: '108', text: '서울' },
-        // { name: '112', text: '인천' },
-        // { name: '165', text: '목포' },
-        // { name: '184', text: '제주' },
-        // { name: '143', text: '대구' },
-        // { name: '102', text: '백령도' },
-        // { name: '152', text: '울산' },
-        // { name: '239', text: '세종' }
+        { name: `${selectValue}`, text: '지역' }
     ];
 
     return (
@@ -66,101 +58,102 @@ const Categories = () => {
 
             <div>
                 <select value={selectValue} onChange={(e) => onChangeRegion(e)}>
-                    <option value="90">	    강릉	</option>
-                    <option value="93">	    강진군	</option>
-                    <option value="95">	    강화	</option>
-                    <option value="98">	    거제	</option>
-                    <option value="99">	    거창	</option>
-                    <option value="100">	경주시	</option>
-                    <option value="101">	고산	</option>
-                    <option value="102">	고창	</option>
-                    <option value="104">	고창군	</option>
-                    <option value="105">	고흥	</option>
-                    <option value="106">	광양시	</option>
-                    <option value="108">	광주	</option>
-                    <option value="112">	구미	</option>
-                    <option value="114">	군산	</option>
-                    <option value="115">	금산	</option>
-                    <option value="119">	김해시	</option>
-                    <option value="121">	남원	</option>
-                    <option value="127">	남해	</option>
-                    <option value="129">	대관령	</option>
-                    <option value="130">	대구	</option>
-                    <option value="131">	대전	</option>
-                    <option value="133">	동두천	</option>
-                    <option value="135">	동해	</option>
-                    <option value="136">	목포	</option>
-                    <option value="137">	문경	</option>
-                    <option value="138">	밀양	</option>
-                    <option value="140">	백령도	</option>
-                    <option value="143">	보령	</option>
-                    <option value="146">	보성군	</option>
-                    <option value="152">	보은	</option>
-                    <option value="155">	봉화	</option>
-                    <option value="156">	부산	</option>
-                    <option value="159">	부안	</option>
-                    <option value="162">	부여	</option>
-                    <option value="165">	북강릉	</option>
-                    <option value="168">	북창원	</option>
-                    <option value="169">	북춘천	</option>
-                    <option value="170">	산청	</option>
-                    <option value="172">	상주	</option>
-                    <option value="174">	서귀포	</option>
-                    <option value="177">	서산	</option>
-                    <option value="184">	서울	</option>
-                    <option value="185">	성산	</option>
-                    <option value="188">	세종	</option>
-                    <option value="189">	속초	</option>
-                    <option value="192">	수원	</option>
-                    <option value="201">	순창군	</option>
-                    <option value="202">	순천	</option>
-                    <option value="203">	안동	</option>
-                    <option value="211">	양산시	</option>
-                    <option value="212">	양평	</option>
-                    <option value="216">	여수	</option>
-                    <option value="217">	영광군	</option>
-                    <option value="221">	영덕	</option>
-                    <option value="226">	영월	</option>
-                    <option value="232">	영주	</option>
-                    <option value="235">	영천	</option>
-                    <option value="236">	완도	</option>
-                    <option value="238">	울릉도	</option>
-                    <option value="239">	울산	</option>
-                    <option value="243">	울진	</option>
-                    <option value="244">	원주	</option>
-                    <option value="245">	의령군	</option>
-                    <option value="247">	의성	</option>
-                    <option value="248">	이천	</option>
-                    <option value="251">	인제	</option>
-                    <option value="252">	인천	</option>
-                    <option value="253">	임실	</option>
-                    <option value="254">	장수	</option>
-                    <option value="255">	장흥	</option>
-                    <option value="257">	전주	</option>
-                    <option value="258">	정선군	</option>
-                    <option value="259">	정읍	</option>
-                    <option value="260">	제주	</option>
-                    <option value="261">	제천	</option>
-                    <option value="262">	진도군	</option>
-                    <option value="263">	진주	</option>
-                    <option value="264">	창원	</option>
-                    <option value="266">	천안	</option>
-                    <option value="268">	철원	</option>
-                    <option value="271">	청송군	</option>
-                    <option value="272">	청주	</option>
-                    <option value="273">	추풍령	</option>
-                    <option value="276">	춘천	</option>
-                    <option value="277">	충주	</option>
-                    <option value="278">	태백	</option>
-                    <option value="279">	통영	</option>
-                    <option value="281">	파주	</option>
-                    <option value="283">	포항	</option>
-                    <option value="284">	함양군	</option>
+                    <option value="105">	강릉	</option>
+                    <option value="259">	강진군	</option>
+                    <option value="201">	강화	</option>
+                    <option value="294">	거제	</option>
+                    <option value="284">	거창	</option>
+                    <option value="283">	경주시	</option>
+                    <option value="185">	고산	</option>
+                    <option value="172">	고창	</option>
+                    <option value="251">	고창군	</option>
+                    <option value="262">	고흥	</option>
+                    <option value="266">	광양시	</option>
+                    <option value="156">	광주	</option>
+                    <option value="279">	구미	</option>
+                    <option value="140">	군산	</option>
+                    <option value="238">	금산	</option>
+                    <option value="253">	김해시	</option>
+                    <option value="247">	남원	</option>
+                    <option value="295">	남해	</option>
+                    <option value="100">	대관령	</option>
+                    <option value="143">	대구	</option>
+                    <option value="133">	대전	</option>
+                    <option value="98">		동두천	</option>
+                    <option value="106">	동해	</option>
+                    <option value="165">	목포	</option>
+                    <option value="273">	문경	</option>
+                    <option value="288">	밀양	</option>
+                    <option value="102">	백령도	</option>
+                    <option value="235">	보령	</option>
+                    <option value="258">	보성군	</option>
+                    <option value="226">	보은	</option>
+                    <option value="271">	봉화	</option>
+                    <option value="159">	부산	</option>
+                    <option value="243">	부안	</option>
+                    <option value="236">	부여	</option>
+                    <option value="104">	북강릉	</option>
+                    <option value="255">	북창원	</option>
+                    <option value="93">		북춘천	</option>
+                    <option value="289">	산청	</option>
+                    <option value="137">	상주	</option>
+                    <option value="189">	서귀포	</option>
+                    <option value="129">	서산	</option>
+                    <option value="108">	서울	</option>
+                    <option value="188">	성산	</option>
+                    <option value="239">	세종	</option>
+                    <option value="90">		속초	</option>
+                    <option value="119">	수원	</option>
+                    <option value="254">	순창군	</option>
+                    <option value="174">	순천	</option>
+                    <option value="136">	안동	</option>
+                    <option value="257">	양산시	</option>
+                    <option value="202">	양평	</option>
+                    <option value="168">	여수	</option>
+                    <option value="252">	영광군	</option>
+                    <option value="277">	영덕	</option>
+                    <option value="121">	영월	</option>
+                    <option value="272">	영주	</option>
+                    <option value="281">	영천	</option>
+                    <option value="170">	완도	</option>
+                    <option value="115">	울릉도	</option>
+                    <option value="152">	울산	</option>
+                    <option value="130">	울진	</option>
+                    <option value="114">	원주	</option>
+                    <option value="263">	의령군	</option>
+                    <option value="278">	의성	</option>
+                    <option value="203">	이천	</option>
+                    <option value="211">	인제	</option>
+                    <option value="112">	인천	</option>
+                    <option value="244">	임실	</option>
+                    <option value="248">	장수	</option>
+                    <option value="260">	장흥	</option>
+                    <option value="146">	전주	</option>
+                    <option value="217">	정선군	</option>
+                    <option value="245">	정읍	</option>
+                    <option value="184">	제주	</option>
+                    <option value="221">	제천	</option>
+                    <option value="268">	진도군	</option>
+                    <option value="192">	진주	</option>
+                    <option value="155">	창원	</option>
+                    <option value="232">	천안	</option>
+                    <option value="95">		철원	</option>
+                    <option value="276">	청송군	</option>
+                    <option value="131">	청주	</option>
+                    <option value="135">	추풍령	</option>
+                    <option value="101">	춘천	</option>
+                    <option value="127">	충주	</option>
+                    <option value="216">	태백	</option>
+                    <option value="162">	통영	</option>
+                    <option value="99">		파주	</option>
+                    <option value="138">	포항	</option>
+                    <option value="264">	함양군	</option>
                     <option value="285">	합천	</option>
-                    <option value="288">	해남	</option>
-                    <option value="289">	홍성	</option>
-                    <option value="294">	홍천	</option>
-                    <option value="295">	흑산도	</option>
+                    <option value="261">	해남	</option>
+                    <option value="177">	홍성	</option>
+                    <option value="212">	홍천	</option>
+                    <option value="169">	흑산도	</option>
+
                 </select>
             </div>
             {categories.map(c => (

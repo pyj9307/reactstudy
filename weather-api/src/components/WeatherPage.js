@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom';
 const WeatherPage = () => {
     const param = useParams();
     // path 파라미터에서 all이 아니면 param[]에 저장이 되어 category에 저장된다. ('*' -> 모든 문자열)
-    const category = param['*'] || 'all';
+    const category = param['*'] || '159';
   return (
     <>
       <Categories category={category}/>
