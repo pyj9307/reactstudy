@@ -1,4 +1,3 @@
-import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -16,29 +15,29 @@ const StyledDiv = styled.div`
 
 function App() {
   const [data, setData] = useState(null);
-//   // async, await 미적용
-//   // -> ajax통신이 완료되기 전에 다음 소스코드를 실행시킨다.
-//   const onClick = () => {
-//     console.log('실행1');
-//     const news = axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=a8f0d4f98b2f4e60847d990ca71a8503')
-//     news.then((result) => {
-//       console.log(result);
-//       setData(result.data);
-//     });
-//     console.log('실행2');
-//   }
+  //   // async, await 미적용
+  //   // -> ajax통신이 완료되기 전에 다음 소스코드를 실행시킨다.
+  //   const onClick = () => {
+  //     console.log('실행1');
+  //     const news = axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=a8f0d4f98b2f4e60847d990ca71a8503')
+  //     news.then((result) => {
+  //       console.log(result);
+  //       setData(result.data);
+  //     });
+  //     console.log('실행2');
+  //   }
 
   // async, await 적용 후
   // -> ajax 통신이 완료된 이후 순차적으로 소스코드를 실행시킨다.
-  const onClick2 = async() => {
+  const onClick2 = async () => {
     console.log('실행1');
-    try{
-    const news = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=a8f0d4f98b2f4e60847d990ca71a8503')
-    console.log(news.data);
-    setData(news.data);
-  } catch (e) {
-    console.log(e);
-  }
+    try {
+      const news = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=a8f0d4f98b2f4e60847d990ca71a8503')
+      console.log(news.data);
+      setData(news.data);
+    } catch (e) {
+      console.log(e);
+    }
     console.log('실행2');
   }
 
