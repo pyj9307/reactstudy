@@ -10,8 +10,8 @@ display: flex;
 const WeatherItem = ({article}) => {
     const {stnNm, tm, avgTa, minTa, minTaHrmt, maxTa, maxTaHrmt, sumRn, sumRnDur } = article;
     return(
+        <WeatherItemBlock>
             <table border="1" width ="800">
-            <WeatherItemBlock>
             <thead>
             <tr align='center' bgcolor='white'>
             <td rowSpan="2" align = "center">{stnNm}</td>
@@ -35,10 +35,10 @@ const WeatherItem = ({article}) => {
             <td>{sumRnDur}</td>
             </tr>
             </thead>
-            </WeatherItemBlock>
             <tbody>
             </tbody>
             </table>
+            </WeatherItemBlock>
     )
 }
 

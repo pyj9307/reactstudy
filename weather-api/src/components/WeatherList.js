@@ -24,12 +24,18 @@ const WeatherList = ({category}) => {
         const fetchData = async ()=>{
             setLoading(true);
             try {
+                console.log(category);
+                const urlPath = category.split('/');
                 // 카테고리가 all 외에 다른 문자열이 들어오면 파라미터에 추가한다.
-                const region = category === 'all' ? '' : `&stnIds=${category}`;
-                // const day = category === 'all' ? '' : `&startDt=${category}`;
+                const region = `&stnIds=${urlPath[0]}`;
+                const startDay = `&startDt=${urlPath[1]}`;
+                const endDay = `&endDt=${urlPath[2]}`;
                 const response = await axios.get(
-                    'https://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList?serviceKey=rt9Q3uLMpEJuMNtOhL6RI9js15hbxmYvbsxvHjpS%2BGWI4S%2B49iv7D88AIxAjrK7DwjsNgVpLCdQpkaMx54Xyhw%3D%3D&pageNo=1&numOfRows=10&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=20230201&endDt=20230302'
+                    'https://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList?serviceKey=qss1Ilj6XLSCTLFyyXyAD%2B56%2FAGlmxWagDFPxh8p8iAXVmPeLDzevJuvQHy%2BAlYloJqOCA9JkSsZSbu5d2rxUQ%3D%3D&pageNo=1&numOfRows=30&dataType=JSON&dataCd=ASOS&dateCd=DAY'                    
+                    // https://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList?serviceKey=qss1Ilj6XLSCTLFyyXyAD%2B56%2FAGlmxWagDFPxh8p8iAXVmPeLDzevJuvQHy%2BAlYloJqOCA9JkSsZSbu5d2rxUQ%3D%3D&pageNo=1&numOfRows=10&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=20230101&endDt=20230201&stnIds=159
                     +region
+                    +startDay
+                    +endDay
                     );
                 console.log(response);
                 console.log(response.data.response.body.items.item);

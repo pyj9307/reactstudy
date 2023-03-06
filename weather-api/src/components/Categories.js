@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
+// 달력 사용하기 위해서 npm install react-datepicker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// 날짜 formatting 기능
+import dayjs from "dayjs";
+
+
 const CategoriesBlock = styled.div`
     display: flex;
     padding: 1rem;
@@ -44,15 +51,32 @@ const Category = styled(NavLink)`
 
 const Categories = () => {
 
-    const [selectValue, setSelectValue] = useState('159');
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const onChange = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    }
+
+    const startDateFormat = dayjs(startDate).format("YYYYMMDD");
+    const endDateFormat = dayjs(endDate).format("YYYYMMDD");
+
+    const [selectValue, setSelectValue] = useState('');
     const onChangeRegion = (e) => {
         setSelectValue(e.target.value);
         console.log(e.target.value);
     };
 
     const categories = [
-        { name: `${selectValue}`, text: '선택' }
+        {
+            name: `${selectValue}`,
+            startDate: `${startDateFormat}`,
+            endDate: `${endDateFormat}`,
+            text: '선택'
+        }
     ];
+
 
     return (
         <CategoriesBlock>
@@ -154,17 +178,19 @@ const Categories = () => {
                     <option value="212">	홍천	</option>
                     <option value="169">	흑산도	</option>
                 </select>
-                <input type="date"
-                    id="date"
-                    max="2023-06-20"
-                    min="2008-06-05"
-                    value="2023-02-15">
-                </input>
-            </div>
+                <DatePicker
+                    selected={startDate}
+                    onChange={onChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    selectsRange
+                    inline
+                />
             {categories.map(c => (
-                <Category key={c.name}
-                    to={c.name === 'all' ? '/' : `/${c.name}`}>{c.text}</Category>
+                    <Category key={c.name}
+                        to={c.name === 'all' ? '/' : `/${c.name}/${c.startDate}/${c.endDate}`}>{c.text}</Category>
             ))}
+            </div>
         </CategoriesBlock>
     );
 }
