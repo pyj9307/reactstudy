@@ -53,6 +53,7 @@ const Categories = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+
     const onChange = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
@@ -63,6 +64,7 @@ const Categories = () => {
     const endDateFormat = dayjs(endDate).format("YYYYMMDD");
 
     const [selectValue, setSelectValue] = useState('');
+
     const onChangeRegion = (e) => {
         setSelectValue(e.target.value);
         console.log(e.target.value);
@@ -76,7 +78,6 @@ const Categories = () => {
             text: '선택'
         }
     ];
-
 
     return (
         <CategoriesBlock>
