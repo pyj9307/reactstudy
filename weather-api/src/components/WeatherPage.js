@@ -5,11 +5,11 @@ import WeatherList from "./WeatherList";
 // 파라미터를 받아오는 useParams 호출
 import { useParams } from 'react-router-dom';
 
-const Calender1 = styled.h1`
-display: flex;
-    padding: 1rem;
-    width: 768px;
-    margin: 0 auto;
+const Today = styled.h1`
+  display: flex;
+  padding: 1rem;
+  width: 768px;
+  margin: 0 auto;
 `;
 
 
@@ -26,9 +26,6 @@ const WeatherPage = () => {
     const year = String(date.getFullYear()).padStart(4, "0");
     const months = String(date.getMonth() + 1).padStart(2, "0");
     const days = String(date.getDate()).padStart(2, "0");
-    // const hours = String(date.getHours()).padStart(2, "0");
-    // const minutes = String(date.getMinutes()).padStart(2, "0");
-    // const second = String(date.getSeconds()).padStart(2, "0");
     setTimer(`${year}${months}${days}`)
   }
 
@@ -45,7 +42,7 @@ const WeatherPage = () => {
   return (
     <>
       <Categories category={category} />
-      <Calender1>Today : {timer}</Calender1>
+      <Today>Today : {timer}</Today>
       <WeatherList category={category} />
     </>
   );
